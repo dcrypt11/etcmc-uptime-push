@@ -17,4 +17,5 @@ This is a simple python script which will check if your ETCMC process is running
 ## How to use
 - Just double-click on **etcmc-push.py** script to start it and leave the console running
 
- 
+**ETC wallet for donations:**
+0xa2d643a1D969A2A7758453e720e5944594FaD2E2
