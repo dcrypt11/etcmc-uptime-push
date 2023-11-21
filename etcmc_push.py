@@ -4,13 +4,8 @@ import time
 import urllib.request
 import os
 from datetime import datetime, timedelta
+import etcmc_push_config
 
-uptimeEndpoint = 'http://192.168.68.64:3001/api/push/z8ym7s19OS?status=up&msk=OK&ping='
-etcpowBalanceFile = "C:\Program Files (x86)\ETCMC ETC NODE LAUNCHER 1920x1080\ETCMC_GUI\ETCMC_GETH\etcpow_balance.txt.enc"
-
-etcpowBalanceMinutes = 2
-secondsBetweenChecks = 60
-    
 
 def check_running():
     timeNow = datetime.now()
@@ -28,14 +23,14 @@ def check_running():
             print(f'{timeNow} {pname} is not running')
             return
 
-    time_mod = os.path.getmtime(etcpowBalanceFile)
+    time_mod = os.path.getmtime(etcmc_push_config.etcpowBalanceFile)
 
-    if datetime.fromtimestamp(time_mod) < timeNow - timedelta(minutes=etcpowBalanceMinutes):
-        print(f'{timeNow}cetcpow_balance not changed for more than {etcpowBalanceMinutes} minutes')
+    if datetime.fromtimestamp(time_mod) < timeNow - timedelta(minutes=etcmc_push_config.etcpowBalanceMinutes):
+        print(f'{timeNow}cetcpow_balance not changed for more than {etcmc_push_config.etcpowBalanceMinutes} minutes')
         return
 
     try:
-        urllib.request.urlopen(uptimeEndpoint)
+        urllib.request.urlopen(etcmc_push_config.uptimeEndpoint)
     except Exception as e:
         print(e.reason)
 
@@ -44,4 +39,4 @@ def check_running():
 
 while True:
     check_running()
-    time.sleep(secondsBetweenChecks)
+    time.sleep(etcmc_push_config.secondsBetweenChecks)
