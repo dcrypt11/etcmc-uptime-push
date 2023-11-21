@@ -36,7 +36,7 @@ def check_running():
 
     try:
         urllib.request.urlopen(uptimeEndpoint)
-    except urllib.error.HTTPError as e:
+    except Exception as e:
         print(e.reason)
 
     print(f'{timeNow} ETCMC node is running')
