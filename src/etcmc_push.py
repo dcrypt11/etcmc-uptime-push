@@ -4,8 +4,10 @@ import time
 import urllib.request
 import os
 from datetime import datetime, timedelta
-import etcmc_push_config
 
+
+contents = open("etcmc_push_config.json").read()
+config = eval(contents)
 
 def check_running():
     timeNow = datetime.now()
@@ -23,14 +25,16 @@ def check_running():
             print(f'{timeNow} {pname} is not running')
             return
 
-    time_mod = os.path.getmtime(etcmc_push_config.etcpowBalanceFile)
+    time_mod = os.path.getmtime(config['etcpowBalanceFile'])
 
-    if datetime.fromtimestamp(time_mod) < timeNow - timedelta(minutes=etcmc_push_config.etcpowBalanceMinutes):
-        print(f'{timeNow}cetcpow_balance not changed for more than {etcmc_push_config.etcpowBalanceMinutes} minutes')
+    etcpowBalanceMinutes = config['etcpowBalanceMinutes']
+
+    if datetime.fromtimestamp(time_mod) < timeNow - timedelta(etcpowBalanceMinutes):
+        print(f'{timeNow}cetcpow_balance not changed for more than {etcpowBalanceMinutes} minutes')
         return
 
     try:
-        urllib.request.urlopen(etcmc_push_config.uptimeEndpoint)
+        urllib.request.urlopen(config['uptimeEndpoint'])
     except Exception as e:
         print(e.reason)
 
@@ -39,4 +43,4 @@ def check_running():
 
 while True:
     check_running()
-    time.sleep(etcmc_push_config.secondsBetweenChecks)
+    time.sleep(config['secondsBetweenChecks'])
