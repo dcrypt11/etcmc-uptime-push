@@ -4,6 +4,9 @@ This is a simple python script which will check if your ETCMC process is running
 ## Setup
 - Download to your node the [latest etcmc_push.exe and etcmc_push_config_sample.json](https://github.com/dcrypt11/etcmc-uptime-kuma-push/releases/latest) from the repository releases
 - Rename **etcmc_push_config_sample.json** to **etcmc_push_config.json** and make sure it is in the same directory with **etcmc_push.exe**
+- Make sure the path set in **etcpowBalanceFile** variable in your etcmc_push_config.json file is the correct full path to etcpow_balance.txt.enc. By default, it can be one of those:
+    - C:\Program Files (x86)\ETCMC ETC NODE LAUNCHER 1920x1080\ETCMC_GUI\ETCMC_GETH\etcpow_balance.txt.enc
+    - C:\Program Files (x86)\ETCMC ETC NODE LAUNCHER 1024x600\ETCMC_GUI\ETCMC_GETH\etcpow_balance.txt.enc
 
 ## Option 1: Use with Uptime Kuma
 - You should have [Uptime Kuma](https://github.com/louislam/uptime-kuma) installed up and running
