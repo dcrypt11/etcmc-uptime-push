@@ -15,7 +15,7 @@ This is a simple python script which will check if your ETCMC process is running
 
 ## Option 2: Use with Healthchecks.io
 - Signup and create a project in [Healthchecks.io](https://healthchecks.io/)
-- Add Check 
+- Add Check (For example: with period 2min and grace 2min)
 - Copy the generated Ping URL in your **etcmc_push_config.json** file, replacing the value for **uptimeEndpoint** variable
 
 ## How to use
