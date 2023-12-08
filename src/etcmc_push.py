@@ -29,7 +29,7 @@ def check_running():
 
     etcpowBalanceMinutes = config['etcpowBalanceMinutes']
 
-    if datetime.fromtimestamp(time_mod) < timeNow - timedelta(etcpowBalanceMinutes):
+    if datetime.fromtimestamp(time_mod) < timeNow - timedelta(minutes=etcpowBalanceMinutes):
         print(f'{timeNow}cetcpow_balance not changed for more than {etcpowBalanceMinutes} minutes')
         return
 
